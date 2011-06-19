@@ -26,7 +26,7 @@ module ActiveAdmin
 
       def find_sections
         ActiveAdmin::Dashboards.sections_for_namespace(namespace).collect { |section| 
-          if section.options.fetch(:if, proc { false }).call == false
+          if section.options.fetch(:if, proc { false }).call == true
             section
           end
              }

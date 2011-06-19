@@ -25,7 +25,11 @@ module ActiveAdmin
       end
 
       def find_sections
-        ActiveAdmin::Dashboards.sections_for_namespace(namespace)
+        ActiveAdmin::Dashboards.sections_for_namespace(namespace).collect { |section| 
+          if section.options.fetch(:if, false)
+            section
+          end
+             }
       end
 
       def namespace
